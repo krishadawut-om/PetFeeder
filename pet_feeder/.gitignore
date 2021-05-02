@@ -32,9 +32,3 @@ yarn-error.log*
 
 # vercel
 .vercel
-
-node_modules
-or
-local
-**/.next/**
-

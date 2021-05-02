@@ -10,7 +10,7 @@ export default function Home(services) {
   console.log(initialFood)
   
   const calculate = () => {
-    const cal = (initialFood.current_value / initialFood.max_value)*100
+    const cal = ((initialFood.max_value - initialFood.current_value) / initialFood.max_value)*100
     return cal
   }
 

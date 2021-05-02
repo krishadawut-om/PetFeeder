@@ -6,8 +6,13 @@ import { Fragment, useState, useEffect } from 'react'
 export default function Home(services) {
   const [food, setFood] = useState(0)
   const [render, setRender] = useState(false)
-  const initialFood = services.services
+  const initialFood = services.services.rows[0]
   console.log(initialFood)
+  
+  const calculate = () => {
+    const cal = (initialFood.current_value / initialFood.max_value)*100
+    return cal
+  }
 
 
   const getPercentage = async () => {
@@ -30,7 +35,7 @@ export default function Home(services) {
     // Tell servo to feed the doggo
     try {
       const response = await axios.get('http://localhost:8080/updateFood')
-      setFood(response.data)
+      return alert(response.data.status)
     } catch (err) {
       console.log(err)
     }
@@ -44,7 +49,7 @@ export default function Home(services) {
         <div className="amountContainer">
           <p>Amount</p>
           <div className="number">
-            <span className="bigNumber">{render ? food.percent : initialFood.percent}</span>
+            <span className="bigNumber">{render ? food.percent : calculate()}</span>
             <span className="smallNumber">/100</span>
           </div>
         </div>
